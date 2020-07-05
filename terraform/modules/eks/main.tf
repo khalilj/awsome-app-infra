@@ -1,16 +1,16 @@
 resource "aws_eks_cluster" "excercise" {
   name     = var.eks_name
-  role_arn = "${aws_iam_role.eks_iam_role.arn}"
+  role_arn = aws_iam_role.eks_iam_role.arn
 
   vpc_config {
-    subnet_ids = ["${aws_subnet.excercise1.id}"]
+    subnet_ids = var.subnet_ids
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
   # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
   depends_on = [
-    "aws_iam_role_policy_attachment.excercise-AmazonEKSClusterPolicy",
-    "aws_iam_role_policy_attachment.excercise-AmazonEKSServicePolicy",
+    aws_iam_role_policy_attachment.excercise-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.excercise-AmazonEKSServicePolicy,
   ]
 }
 
@@ -33,12 +33,12 @@ resource "aws_iam_role" "eks_iam_role" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "exercise-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "excercise-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks_iam_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "exercise-AmazonEKSServicePolicy" {
+resource "aws_iam_role_policy_attachment" "excercise-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
   role       = aws_iam_role.eks_iam_role.name
 }

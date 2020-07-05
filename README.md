@@ -5,6 +5,8 @@ Create IAM user (terraform)
      AdministratorAccess - should be replaced with min required policies
 aws configure
 Create vpc and subnet
+eks requires 2 subnets on 2 different AZ
+Fix hardcoded subnet CIDR string
 
 Commands:
     tf init

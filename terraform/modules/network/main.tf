@@ -6,11 +6,13 @@ resource "aws_vpc" "main" {
     }
 }
 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "subnet" {
+  count = length(var.subnet_az)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_main_cidr_block
+  cidr_block = "10.0.${count.index}.0/24"
+  availability_zone = var.subnet_az[count.index]
 
   tags = {
-    Name = "Main"
+    Name = "${var.subnet_az[count.index]}"
   }
 }

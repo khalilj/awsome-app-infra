@@ -8,7 +8,7 @@ variable "vpc_cidr_block" {
   default = ""
 }
 
-variable "subnet_main_cidr_block" {
-  description = "The CIDR Block of the Main Subnet"
-  default = ""
+variable "subnet_az" {
+  type = list(string)
+  description = "The name of the availability zones"
 }
