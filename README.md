@@ -10,3 +10,7 @@ Commands:
     tf init
     tf apply -auto-approve -var-file=toluna.tfvars
     tf destroy -auto-approve -var-file=toluna.tfvars
+
+Handle TF state
+
+Handle TF output
