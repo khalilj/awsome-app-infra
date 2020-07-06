@@ -12,3 +12,7 @@ variable "subnet_az" {
   type = list(string)
   description = "The name of the availability zones"
 }
+
+variable "subnet_tags" {
+  description = "Tags for the subnet"
+}

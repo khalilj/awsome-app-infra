@@ -12,7 +12,5 @@ resource "aws_subnet" "subnet" {
   cidr_block = "10.0.${count.index}.0/24"
   availability_zone = var.subnet_az[count.index]
 
-  tags = {
-    Name = "${var.subnet_az[count.index]}"
-  }
+  tags = var.subnet_tags
 }

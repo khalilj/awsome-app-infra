@@ -12,6 +12,9 @@ module "network" {
   vpc_name = var.vpc_name
   vpc_cidr_block = var.vpc_cidr_block
   subnet_az = var.subnet_az
+  subnet_tags = {
+    "kubernetes.io/cluster/${var.eks_name}" = "shared"
+  }
 }
 
 module "eks" {

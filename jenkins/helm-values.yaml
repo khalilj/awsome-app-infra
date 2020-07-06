@@ -1,0 +1,10 @@
+master:
+  ingress:
+    enabled: true
+    hostName: jenkins.toluna
+    path: /
+    paths:
+      - backend:
+          serviceName: toluna-jenkins
+          servicePort: 8080
+        path: /
