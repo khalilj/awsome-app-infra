@@ -1,23 +1,20 @@
 # awsome-app-infra
-
 tf init
 Create IAM user (terraform)
-     AdministratorAccess - should be replaced with min required policies
-aws configure
-Create vpc and subnet
-eks requires 2 subnets on 2 different AZ
-Fix hardcoded subnet CIDR string
+     Project Editor - should be replaced with min required policies
 
 Commands:
     tf init
-    tf apply -auto-approve -var-file=toluna.tfvars
-    tf destroy -auto-approve -var-file=toluna.tfvars
+    tf apply -auto-approve -var-file=excercise.tfvars
+    tf destroy -auto-approve -var-file=excercise.tfvars
 
-Handle TF state
-
-Handle TF output
-
-aws eks --region us-east-2 update-kubeconfig --name training-eks-DGQKmShD
+# Enhancements
+1. Use Jenkins Job DSL to load job definition to Jenkins
+2. Provision Nginx ingress and Jenkins helm as part of Terraform
+3. Rename repos to fix type in the name (awesome instead of awsome) :)
+4. Use Jenkins dedicated SSH for github (now using mine)
+5. Add webhook for CI job
+6. Add rolling update to helm - DONE
 
 
 # GCP
@@ -34,10 +31,10 @@ helm init --service-account tiller --upgrade
 # Jenkins
 Namespace: jenkins (k create ns jenkins)
 helm install --name toluna-jenkins stable/jenkins
-/etc/hosts: 35.192.193.230 jenkins.toluna
 Access via: http://jenkins.toluna
 Use Jenkins Kubernetes plugin to provision ephemeral agents
 Configure k8s plugin to use Jenkins service toluna-jenkins:5000 for agents to connect to master
+Install plugin Docker Pipeline: https://plugins.jenkins.io/docker-workflow
 
 # Nginx Ingress
 Namespace: toluna-system (k create ns toluna-system)

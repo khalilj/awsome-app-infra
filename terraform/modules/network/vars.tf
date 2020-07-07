@@ -3,16 +3,12 @@ variable "vpc_name" {
   default = ""
 }
 
-variable "vpc_cidr_block" {
-  description = "The CIDR Block of the VPC"
+variable "region" {
+  description = "The region"
   default = ""
 }
 
-variable "subnet_az" {
-  type = list(string)
-  description = "The name of the availability zones"
-}
-
-variable "subnet_tags" {
-  description = "Tags for the subnet"
+variable "subnet_cidr_block" {
+  description = "The CIDR Block of the Subnet"
+  default = ""
 }

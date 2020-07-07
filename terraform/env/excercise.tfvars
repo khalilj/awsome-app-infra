@@ -1,7 +1,7 @@
-region = "us-east-1"
+project_id = "playground-281713"
+cred_path = "/Users/khalil/Downloads/playground-281713-00d57ada111d.json"
+region = "us-east1"
 vpc_name = "toluna-vpc"
-vpc_cidr_block = "10.0.0.0/16"
+subnet_cidr_block = "10.10.0.0/24"
 
-subnet_az = ["us-east-1a", "us-east-1b"]
-
-eks_name = "toluna-k8s"
+cluster_name = "staging"

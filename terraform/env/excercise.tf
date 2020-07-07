@@ -1,24 +1,17 @@
-provider "aws" {
-    profile = "default"
-    region = var.region
+provider "google" {
+  credentials = file(var.cred_path)
+  project = var.project_id
+  region  = var.region
 }
-
-# module "name" {
-#   source = "../modules/name"
-# }
 
 module "network" {
   source = "../modules/network"
   vpc_name = var.vpc_name
-  vpc_cidr_block = var.vpc_cidr_block
-  subnet_az = var.subnet_az
-  subnet_tags = {
-    "kubernetes.io/cluster/${var.eks_name}" = "shared"
-  }
+  subnet_cidr_block = var.subnet_cidr_block
 }
 
-module "eks" {
-  source = "../modules/eks"
-  eks_name = var.eks_name
-  subnet_ids = module.network.subnet_ids
+module "gke" {
+  source = "../modules/gke"
+  cluster_name = var.cluster_name
+  region  = var.region
 }

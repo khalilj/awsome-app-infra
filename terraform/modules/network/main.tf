@@ -1,16 +1,11 @@
-resource "aws_vpc" "main" {
-    cidr_block = var.vpc_cidr_block
-
-    tags = {
-        Name = var.vpc_name
-    }
+resource "google_compute_network" "vpc" {
+  name                    = var.vpc_name
+  auto_create_subnetworks = "false"
 }
 
-resource "aws_subnet" "subnet" {
-  count = length(var.subnet_az)
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.${count.index}.0/24"
-  availability_zone = var.subnet_az[count.index]
-
-  tags = var.subnet_tags
+resource "google_compute_subnetwork" "subnet" {
+  name          = "${var.vpc_name}-subnet"
+  region        = var.region
+  network       = google_compute_network.vpc.name
+  ip_cidr_range = var.subnet_cidr_block
 }
